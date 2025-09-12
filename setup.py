@@ -1,19 +1,18 @@
 from setuptools import find_packages, setup
+from typing import List
 
-def get_requirements(filename="requirements.txt"):
-    with open(filename) as f:
-        requirements = f.read().splitlines()
-        # Remove "-e ." if present (common in ML projects)
-        requirements = [req for req in requirements if req.strip() != "-e ."]
+def get_requirements(file_path:str)->List[str]:
+    requirements=[]
+    with open(file_path) as f:
+        requirements = f.readlines()
+        requirements = [req.strip() for req in requirements]
     return requirements
 
 setup(
     name="mlproject",
     version="0.1.0",
-    author="Your Name",
-    author_email="your_email@example.com",
-    description="A machine learning project",
+    author="dinesh",
+    author_email="dineshkarthikdineshkarthik40@gmail.com",
     packages=find_packages(),
-    install_requires=get_requirements(),
-    python_requires=">=3.8",
+    install_requires=get_requirements("requirements.txt"),
 )
